@@ -18,20 +18,18 @@ This document describes the **single-period** (one month) optimization model.
 
 Let:
 
-- \( \mathcal{O} \) = set of raw oils  
-  \[
-  \mathcal{O} = \{\text{VEG\_1}, \text{VEG\_2}, \text{OIL\_1}, \text{OIL\_2}, \text{OIL\_3}\}
-  \]
+- $( \mathcal{O} )$ = set of raw oils  
+  $$\mathcal{O} = \{\text{VEG\_1}, \text{VEG\_2}, \text{OIL\_1}, \text{OIL\_2}, \text{OIL\_3}\}$$
 
-- \( \mathcal{O}_{\text{VEG}} \subset \mathcal{O} \) = vegetable oils  
-  \[
+- $ \mathcal{O}_{\text{VEG}} \subset \mathcal{O} $ = vegetable oils  
+  $$
   \mathcal{O}_{\text{VEG}} = \{\text{VEG\_1}, \text{VEG\_2}\}
-  \]
+  $$
 
-- \( \mathcal{O}_{\text{NON}} \subset \mathcal{O} \) = non-vegetable oils  
-  \[
+- $ \mathcal{O}_{\text{NON}} \subset \mathcal{O} $ = non-vegetable oils  
+  $$
   \mathcal{O}_{\text{NON}} = \{\text{OIL\_1}, \text{OIL\_2}, \text{OIL\_3}\}
-  \]
+  $$
 
 ---
 
@@ -39,13 +37,13 @@ Let:
 
 All parameters are known constants.
 
-- \( \text{cost}_o \): purchase cost per ton of oil \(o \in \mathcal{O}\)
-- \( \text{price} \): selling price per ton of final product
-- \( \text{hardness}_o \): hardness value of oil \(o\)
-- \( \underline{H} \): minimum allowable hardness of the final blend
-- \( \overline{H} \): maximum allowable hardness of the final blend
-- \( \text{cap}_{\text{VEG}} \): maximum tons of vegetable oil that can be refined
-- \( \text{cap}_{\text{NON}} \): maximum tons of non-vegetable oil that can be refined
+- $ \text{cost}_o $: purchase cost per ton of oil $o \in \mathcal{O}$
+- $ \text{price} $: selling price per ton of final product
+- $ \text{hardness}_o $: hardness value of oil $o$
+- $ \underline{H} $: minimum allowable hardness of the final blend
+- $ \overline{H} $: maximum allowable hardness of the final blend
+- $ \text{cap}_{\text{VEG}} $: maximum tons of vegetable oil that can be refined
+- $ \text{cap}_{\text{NON}} $: maximum tons of non-vegetable oil that can be refined
 
 ---
 
@@ -53,8 +51,8 @@ All parameters are known constants.
 
 All decision variables are continuous and non-negative.
 
-- \( x_o \): tons of raw oil \(o \in \mathcal{O}\) refined in the period  
-- \( y \): tons of final blended product produced
+- $ x_o $: tons of raw oil $o \in \mathcal{O}$ refined in the period  
+- $ y $: tons of final blended product produced
 
 ---
 
@@ -62,12 +60,12 @@ All decision variables are continuous and non-negative.
 
 Maximize total profit, defined as revenue from the final product minus raw oil purchase costs:
 
-\[
+$$
 \max \;
 \text{price} \cdot y
 \;-\;
 \sum_{o \in \mathcal{O}} \text{cost}_o \cdot x_o
-\]
+$$
 
 ---
 
@@ -78,18 +76,18 @@ Maximize total profit, defined as revenue from the final product minus raw oil p
 Vegetable and non-vegetable oils must be processed on separate production lines with limited capacity.
 
 **Vegetable oils:**
-\[
+$$
 \sum_{o \in \mathcal{O}_{\text{VEG}}} x_o
 \;\le\;
 \text{cap}_{\text{VEG}}
-\]
+$$
 
 **Non-vegetable oils:**
-\[
+$$
 \sum_{o \in \mathcal{O}_{\text{NON}}} x_o
 \;\le\;
 \text{cap}_{\text{NON}}
-\]
+$$
 
 ---
 
@@ -97,9 +95,9 @@ Vegetable and non-vegetable oils must be processed on separate production lines 
 
 All refined oil is blended into the final product. No waste or loss occurs.
 
-\[
+$$
 \sum_{o \in \mathcal{O}} x_o = y
-\]
+$$
 
 ---
 
@@ -108,29 +106,29 @@ All refined oil is blended into the final product. No waste or loss occurs.
 The hardness of the blended product is a linear weighted average of the component oils and must lie within specified bounds.
 
 **Lower bound:**
-\[
+$$
 \sum_{o \in \mathcal{O}} \text{hardness}_o \cdot x_o
 \;\ge\;
 \underline{H} \cdot y
-\]
+$$
 
 **Upper bound:**
-\[
+$$
 \sum_{o \in \mathcal{O}} \text{hardness}_o \cdot x_o
 \;\le\;
 \overline{H} \cdot y
-\]
+$$
 
 ---
 
 ### 4. Non-Negativity
 
-\[
+$$
 x_o \ge 0 \quad \forall o \in \mathcal{O}
-\]
-\[
+$$
+$$
 y \ge 0
-\]
+$$
 
 ---
 
@@ -138,18 +136,18 @@ y \ge 0
 
 | Mathematical Symbol | Description                              | Pyomo Name / Structure        |
 |--------------------|------------------------------------------|-------------------------------|
-| \( \mathcal{O} \)  | Set of raw oils                           | `model.O`                     |
-| \( \mathcal{O}_{\text{VEG}} \) | Vegetable oils subset            | `model.O_VEG`                 |
-| \( \mathcal{O}_{\text{NON}} \) | Non-vegetable oils subset        | `model.O_NON`                 |
-| \( x_o \)          | Tons of oil \(o\) refined                | `model.x[o]`                  |
-| \( y \)            | Final product output                     | `model.prod` or `model.y`     |
-| \( \text{cost}_o \)| Cost per ton of oil                      | `model.cost[o]`               |
-| \( \text{price} \) | Selling price per ton                    | `model.price`                 |
-| \( \text{hardness}_o \) | Hardness of oil \(o\)             | `model.hardness[o]`           |
-| \( \underline{H} \)| Minimum blend hardness                   | `model.hardness_lb`           |
-| \( \overline{H} \) | Maximum blend hardness                   | `model.hardness_ub`           |
-| \( \text{cap}_{\text{VEG}} \) | Veg processing capacity        | `model.production_cap['VEG']` |
-| \( \text{cap}_{\text{NON}} \) | Non-veg processing capacity    | `model.production_cap['NON']` |
+| $ \mathcal{O} $  | Set of raw oils                           | `model.O`                     |
+| $ \mathcal{O}_{\text{VEG}} $ | Vegetable oils subset            | `model.O_VEG`                 |
+| $ \mathcal{O}_{\text{NON}} $ | Non-vegetable oils subset        | `model.O_NON`                 |
+| $ x_o $          | Tons of oil $o$ refined                | `model.x[o]`                  |
+| $ y $            | Final product output                     | `model.prod` or `model.y`     |
+| $ \text{cost}_o $| Cost per ton of oil                      | `model.cost[o]`               |
+| $ \text{price} $ | Selling price per ton                    | `model.price`                 |
+| $ \text{hardness}_o $ | Hardness of oil $o$             | `model.hardness[o]`           |
+| $ \underline{H} $| Minimum blend hardness                   | `model.hardness_lb`           |
+| $ \overline{H} $ | Maximum blend hardness                   | `model.hardness_ub`           |
+| $ \text{cap}_{\text{VEG}} $ | Veg processing capacity        | `model.production_cap['VEG']` |
+| $ \text{cap}_{\text{NON}} $ | Non-veg processing capacity    | `model.production_cap['NON']` |
 
 ---
 
