@@ -16,43 +16,20 @@ This document describes the **single-period** (one month) optimization model.
 
 ## Sets
 
-Let the following sets be defined.
+Let:
 
-### Raw oils
+- $( \mathcal{O} )$ = set of raw oils  
+  $$\mathcal{O} = \{\text{VEG\_1}, \text{VEG\_2}, \text{OIL\_1}, \text{OIL\_2}, \text{OIL\_3}\}$$
 
-$$
-\mathcal{O}
-=
-\{\text{VEG\_1},\ \text{VEG\_2},\ \text{OIL\_1},\ \text{OIL\_2},\ \text{OIL\_3}\}
-$$
+- $ \mathcal{O}_{\text{VEG}} \subset \mathcal{O} $ = vegetable oils  
+  $$
+  \mathcal{O}_{\text{VEG}} = \{\text{VEG\_1}, \text{VEG\_2}\}
+  $$
 
-### Vegetable oils
-
-$$
-\mathcal{O}_{\text{VEG}}
-\subset
-\mathcal{O}
-$$
-
-$$
-\mathcal{O}_{\text{VEG}}
-=
-\{\text{VEG\_1},\ \text{VEG\_2}\}
-$$
-
-### Non-vegetable oils
-
-$$
-\mathcal{O}_{\text{NON}}
-\subset
-\mathcal{O}
-$$
-
-$$
-\mathcal{O}_{\text{NON}}
-=
-\{\text{OIL\_1},\ \text{OIL\_2},\ \text{OIL\_3}\}
-$$
+- $ \mathcal{O}_{\text{NON}} \subset \mathcal{O} $ = non-vegetable oils  
+  $$
+  \mathcal{O}_{\text{NON}} = \{\text{OIL\_1}, \text{OIL\_2}, \text{OIL\_3}\}
+  $$
 
 ---
 
@@ -60,26 +37,13 @@ $$
 
 All parameters are known constants.
 
-- $cost_{o}$  
-  Purchase cost per ton of oil $o$
-
-- $price$  
-  Selling price per ton of final product
-
-- $hardness_{o}$  
-  Hardness value of oil $o$
-
-- $H_{min}$  
-  Minimum allowable hardness of the blended product
-
-- $H_{max}$  
-  Maximum allowable hardness of the blended product
-
-- $cap_{\text{VEG}}$  
-  Maximum tons of vegetable oil that can be refined
-
-- $cap_{\text{NON}}$  
-  Maximum tons of non-vegetable oil that can be refined
+- $ \text{cost}_o $: purchase cost per ton of oil $o \in \mathcal{O}$
+- $ \text{price} $: selling price per ton of final product
+- $ \text{hardness}_o $: hardness value of oil $o$
+- $ \underline{H} $: minimum allowable hardness of the final blend
+- $ \overline{H} $: maximum allowable hardness of the final blend
+- $ \text{cap}_{\text{VEG}} $: maximum tons of vegetable oil that can be refined
+- $ \text{cap}_{\text{NON}} $: maximum tons of non-vegetable oil that can be refined
 
 ---
 
@@ -87,94 +51,81 @@ All parameters are known constants.
 
 All decision variables are continuous and non-negative.
 
-- $x_{o}$  
-  Tons of raw oil $o$ refined during the period
-
-- $y$  
-  Tons of final blended product produced
+- $ x_o $: tons of raw oil $o \in \mathcal{O}$ refined in the period  
+- $ y $: tons of final blended product produced
 
 ---
 
 ## Objective Function
 
-Maximize total profit, defined as revenue from selling the final product minus the cost of raw oils.
+Maximize total profit, defined as revenue from the final product minus raw oil purchase costs:
 
 $$
-\max
-\quad
-price \cdot y
--
-\sum_{o \in \mathcal{O}} cost_{o} \cdot x_{o}
+\max \;
+\text{price} \cdot y
+\;-\;
+\sum_{o \in \mathcal{O}} \text{cost}_o \cdot x_o
 $$
 
 ---
 
 ## Constraints
 
-### Production Capacity Constraints
+### 1. Production Capacity Constraints
 
 Vegetable and non-vegetable oils must be processed on separate production lines with limited capacity.
 
-#### Vegetable oils
-
+**Vegetable oils:**
 $$
-\sum_{o \in \mathcal{O}_{\text{VEG}}} x_{o}
-\le
-cap_{\text{VEG}}
+\sum_{o \in \mathcal{O}_{\text{VEG}}} x_o
+\;\le\;
+\text{cap}_{\text{VEG}}
 $$
 
-#### Non-vegetable oils
-
+**Non-vegetable oils:**
 $$
-\sum_{o \in \mathcal{O}_{\text{NON}}} x_{o}
-\le
-cap_{\text{NON}}
+\sum_{o \in \mathcal{O}_{\text{NON}}} x_o
+\;\le\;
+\text{cap}_{\text{NON}}
 $$
 
 ---
 
-### Mass Balance Constraint
+### 2. Mass Balance Constraint
 
-All refined oil is blended into the final product.
+All refined oil is blended into the final product. No waste or loss occurs.
 
 $$
-\sum_{o \in \mathcal{O}} x_{o}
-=
-y
+\sum_{o \in \mathcal{O}} x_o = y
 $$
 
 ---
 
-### Hardness Constraints
+### 3. Hardness Constraints
 
 The hardness of the blended product is a linear weighted average of the component oils and must lie within specified bounds.
 
-#### Lower bound
-
+**Lower bound:**
 $$
-\sum_{o \in \mathcal{O}} hardness_{o} \cdot x_{o}
-\ge
-H_{min} \cdot y
+\sum_{o \in \mathcal{O}} \text{hardness}_o \cdot x_o
+\;\ge\;
+\underline{H} \cdot y
 $$
 
-#### Upper bound
-
+**Upper bound:**
 $$
-\sum_{o \in \mathcal{O}} hardness_{o} \cdot x_{o}
-\le
-H_{max} \cdot y
+\sum_{o \in \mathcal{O}} \text{hardness}_o \cdot x_o
+\;\le\;
+\overline{H} \cdot y
 $$
 
 ---
 
-### Non-Negativity Constraints
+### 4. Non-Negativity
 
 $$
-x_{o} \ge 0
-\quad
-\forall o \in \mathcal{O}
+x_o \ge 0 \quad \forall o \in \mathcal{O}
 $$
-
 $$
 y \ge 0
 $$
@@ -183,26 +134,26 @@ $$
 
 ## Notation to Pyomo Mapping
 
-| Mathematical Symbol | Description | Pyomo Name |
-|--------------------|-------------|------------|
-| $\mathcal{O}$ | Set of raw oils | `model.O` |
-| $\mathcal{O}_{\text{VEG}}$ | Vegetable oils | `model.O_VEG` |
-| $\mathcal{O}_{\text{NON}}$ | Non-vegetable oils | `model.O_NON` |
-| $x_{o}$ | Tons of oil refined | `model.x[o]` |
-| $y$ | Final product output | `model.prod` |
-| $cost_{o}$ | Oil cost | `model.cost[o]` |
-| $price$ | Product price | `model.price` |
-| $hardness_{o}$ | Oil hardness | `model.hardness[o]` |
-| $H_{min}$ | Minimum hardness | `model.hardness_lb` |
-| $H_{max}$ | Maximum hardness | `model.hardness_ub` |
-| $cap_{\text{VEG}}$ | Veg capacity | `model.production_cap['VEG']` |
-| $cap_{\text{NON}}$ | Non-veg capacity | `model.production_cap['NON']` |
+| Mathematical Symbol | Description                              | Pyomo Name / Structure        |
+|--------------------|------------------------------------------|-------------------------------|
+| $ \mathcal{O} $  | Set of raw oils                           | `model.O`                     |
+| $ \mathcal{O}_{\text{VEG}} $ | Vegetable oils subset            | `model.O_VEG`                 |
+| $ \mathcal{O}_{\text{NON}} $ | Non-vegetable oils subset        | `model.O_NON`                 |
+| $ x_o $          | Tons of oil $o$ refined                | `model.x[o]`                  |
+| $ y $            | Final product output                     | `model.prod` or `model.y`     |
+| $ \text{cost}_o $| Cost per ton of oil                      | `model.cost[o]`               |
+| $ \text{price} $ | Selling price per ton                    | `model.price`                 |
+| $ \text{hardness}_o $ | Hardness of oil $o$             | `model.hardness[o]`           |
+| $ \underline{H} $| Minimum blend hardness                   | `model.hardness_lb`           |
+| $ \overline{H} $ | Maximum blend hardness                   | `model.hardness_ub`           |
+| $ \text{cap}_{\text{VEG}} $ | Veg processing capacity        | `model.production_cap['VEG']` |
+| $ \text{cap}_{\text{NON}} $ | Non-veg processing capacity    | `model.production_cap['NON']` |
 
 ---
 
 ## Notes on Implementation
 
-- Oil categories are represented as explicit subsets of the oil set.
+- Oil categories are represented as **subsets**, not logic inside constraints.
 - Hardness constraints remain linear due to the mass balance equation.
-- This single-period formulation serves as the foundation for the multi-period inventory model.
+- This single-period model forms the foundation for the multi-period model with inventory and storage costs.
 
