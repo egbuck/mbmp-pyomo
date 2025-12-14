@@ -19,16 +19,19 @@ This document describes the **single-period** (one month) optimization model.
 Let:
 
 - $`(\mathcal{O})`$ = set of raw oils  
+
   ```math
   \mathcal{O} = \{\text{VEG\_1}, \text{VEG\_2}, \text{OIL\_1}, \text{OIL\_2}, \text{OIL\_3}\}
   ```
 
 - $`\mathcal{O}_{\text{VEG}} \subset \mathcal{O}`$ = vegetable oils  
+
   ```math
   \mathcal{O}_{\text{VEG}} = \{\text{VEG\_1}, \text{VEG\_2}\}
   ```
 
 - $`\mathcal{O}_{\text{NON}} \subset \mathcal{O}`$ = non-vegetable oils  
+
   ```math
   \mathcal{O}_{\text{NON}} = \{\text{OIL\_1}, \text{OIL\_2}, \text{OIL\_3}\}
   ```
