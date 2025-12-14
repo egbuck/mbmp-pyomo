@@ -1,5 +1,5 @@
 """
-Model Definitions
+Model Definition for Single Period Oil Blending Problem
 """
 MONTH = "Jan"
 import pyomo.environ as pyo
