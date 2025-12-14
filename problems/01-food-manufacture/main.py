@@ -2,9 +2,8 @@
 Entry point for optimization run
 """
 
-from data import read_data
+from mbmp_pyomo.utils import read_data, solve_model
 from models import create_single_period_model
-from solve import solve_model
 
 def main():
     data = read_data("data.yaml")
