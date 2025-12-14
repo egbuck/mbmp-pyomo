@@ -1,0 +1,74 @@
+sets:
+  O: [VEG_1, VEG_2, OIL_1, OIL_2, OIL_3]
+  O_VEG: [VEG_1, VEG_2]
+  O_NON: [OIL_1, OIL_2, OIL_3]
+  M: [Jan, Feb, Mar, Apr, May, Jun]
+
+parameters:
+  cost:
+    VEG_1:
+      Jan: 110
+      Feb: 130
+      Mar: 110
+      Apr: 120
+      May: 100
+      Jun:  90
+    VEG_2:
+      Jan: 120
+      Feb: 130
+      Mar: 140
+      Apr: 110
+      May: 120
+      Jun: 100
+    OIL_1:
+      Jan: 130
+      Feb: 110
+      Mar: 130
+      Apr: 120
+      May: 150
+      Jun: 140
+    OIL_2:
+      Jan: 110
+      Feb:  90
+      Mar: 100
+      Apr: 120
+      May: 110
+      Jun:  80
+    OIL_3:
+      Jan: 115
+      Feb: 115
+      Mar:  95
+      Apr: 125
+      May: 105
+      Jun: 135
+  price: 150
+  production_cap:
+    VEG: 200
+    NON: 250
+  storage_cap:
+    VEG_1: 1000
+    VEG_2: 1000
+    OIL_1: 1000
+    OIL_2: 1000
+    OIL_3: 1000
+  storage_cost: 5
+  hardness_lb: 3
+  hardness_ub: 6
+  hardness:
+    VEG_1: 8.8
+    VEG_2: 6.1
+    OIL_1: 2.0
+    OIL_2: 4.2
+    OIL_3: 5.0
+  start_inventory:
+    VEG_1: 500
+    VEG_2: 500
+    OIL_1: 500
+    OIL_2: 500
+    OIL_3: 500
+  end_inventory:
+    VEG_1: 500
+    VEG_2: 500
+    OIL_1: 500
+    OIL_2: 500
+    OIL_3: 500
