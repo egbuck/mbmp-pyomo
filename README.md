@@ -145,12 +145,12 @@ y \ge 0
 | $`\mathcal{O}_{\text{VEG}}`$ | Vegetable oils subset            | `model.O_VEG`                 |
 | $`\mathcal{O}_{\text{NON}}`$ | Non-vegetable oils subset        | `model.O_NON`                 |
 | $`x_o`$          | Tons of oil $o$ refined                | `model.x[o]`                  |
-| $`y`$            | Final product output                     | `model.prod` or `model.y`     |
+| $`y`$            | Final product output                     | `model.prod`      |
 | $`\text{cost}_o`$| Cost per ton of oil                      | `model.cost[o]`               |
 | $`\text{price}`$ | Selling price per ton                    | `model.price`                 |
 | $`\text{hardness}_o`$ | Hardness of oil $o$             | `model.hardness[o]`           |
-| $`\underline{H}`$| Minimum blend hardness                   | `model.hardness_lb`           |
-| $`\overline{H}`$ | Maximum blend hardness                   | `model.hardness_ub`           |
+| $`\underline{H}`$| Minimum blend hardness                   | `model.hardness_min`           |
+| $`\overline{H}`$ | Maximum blend hardness                   | `model.hardness_max`           |
 | $`\text{cap}_{\text{VEG}}`$ | Veg processing capacity        | `model.production_cap['VEG']` |
 | $`\text{cap}_{\text{NON}}`$ | Non-veg processing capacity    | `model.production_cap['NON']` |
 

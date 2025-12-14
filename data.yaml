@@ -1,7 +1,9 @@
 sets:
   O: [VEG_1, VEG_2, OIL_1, OIL_2, OIL_3]
-  O_VEG: [VEG_1, VEG_2]
-  O_NON: [OIL_1, OIL_2, OIL_3]
+  OTYPE: [VEG, NON]
+  O_BY_TYPE:
+    VEG: [VEG_1, VEG_2]
+    NON: [OIL_1, OIL_2, OIL_3]
   M: [Jan, Feb, Mar, Apr, May, Jun]
 
 parameters:
@@ -52,8 +54,8 @@ parameters:
     OIL_2: 1000
     OIL_3: 1000
   storage_cost: 5
-  hardness_lb: 3
-  hardness_ub: 6
+  hardness_min: 3
+  hardness_max: 6
   hardness:
     VEG_1: 8.8
     VEG_2: 6.1
