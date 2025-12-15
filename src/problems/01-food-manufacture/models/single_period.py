@@ -21,7 +21,7 @@ def create_model(data):
         initialize=data["parameters"]["production_cap"]
     )
     # Get the costs for the specified MONTH for each oil in model.O
-    month_costs = {oil: cost[MONTH] for oil, cost in data["parameters"]["cost"].items()}
+    month_costs = data["parameters"]["cost"][MONTH]
     model.cost = pyo.Param(model.O, initialize=month_costs)
     model.price = pyo.Param(initialize=data["parameters"]["price"])
 
