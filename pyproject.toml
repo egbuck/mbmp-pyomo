@@ -1,7 +1,11 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
-name = "food-manufacture"
+name = "mbmp_pyomo"
 version = "0.1.0"
-description = "Add your description here"
+description = "Practice problems for modeling and solving optimization problems using Pyomo."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

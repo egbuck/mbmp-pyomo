@@ -4,45 +4,46 @@ sets:
   O_BY_TYPE:
     VEG: [VEG_1, VEG_2]
     NON: [OIL_1, OIL_2, OIL_3]
-  M: [Jan, Feb, Mar, Apr, May, Jun]
+  T: [Jan, Feb, Mar, Apr, May, Jun]
 
 parameters:
   cost:
-    VEG_1:
-      Jan: 110
-      Feb: 130
-      Mar: 110
-      Apr: 120
-      May: 100
-      Jun:  90
-    VEG_2:
-      Jan: 120
-      Feb: 130
-      Mar: 140
-      Apr: 110
-      May: 120
-      Jun: 100
-    OIL_1:
-      Jan: 130
-      Feb: 110
-      Mar: 130
-      Apr: 120
-      May: 150
-      Jun: 140
-    OIL_2:
-      Jan: 110
-      Feb:  90
-      Mar: 100
-      Apr: 120
-      May: 110
-      Jun:  80
-    OIL_3:
-      Jan: 115
-      Feb: 115
-      Mar:  95
-      Apr: 125
-      May: 105
-      Jun: 135
+    Jan:
+      VEG_1: 110
+      VEG_2: 120
+      OIL_1: 130
+      OIL_2: 110
+      OIL_3: 115
+    Feb:
+      VEG_1: 130
+      VEG_2: 130
+      OIL_1: 110
+      OIL_2:  90
+      OIL_3: 115
+    Mar:
+      VEG_1: 110
+      VEG_2: 140
+      OIL_1: 130
+      OIL_2: 100
+      OIL_3:  95
+    Apr:
+      VEG_1: 120
+      VEG_2: 110
+      OIL_1: 120
+      OIL_2: 120
+      OIL_3: 125
+    May:
+      VEG_1: 100
+      VEG_2: 120
+      OIL_1: 150
+      OIL_2: 110
+      OIL_3: 105
+    Jun:
+      VEG_1:  90
+      VEG_2: 100
+      OIL_1: 140
+      OIL_2:  80
+      OIL_3: 135
   price: 150
   production_cap:
     VEG: 200

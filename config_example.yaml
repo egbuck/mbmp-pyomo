@@ -1,0 +1,3 @@
+solver:
+  name: "glpk"
+  executable: "/opt/homebrew/bin/glpsol"
