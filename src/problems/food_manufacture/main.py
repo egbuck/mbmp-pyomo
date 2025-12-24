@@ -3,7 +3,7 @@ Entry point for optimization run
 """
 
 from mbmp_pyomo.utils import read_data, solve_model
-from models import create_single_period_model, create_multi_period_model
+from problems.food_manufacture.models import create_single_period_model, create_multi_period_model
 from pathlib import Path
 import argparse
 
